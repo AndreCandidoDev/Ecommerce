@@ -1,0 +1,9 @@
+# See the name for you IDE
+.idea
+# If you are using sqlite3
+*.sqlite3
+*pyc
+/media
+.env
+.nota_sobre_apps
+/rascunhos

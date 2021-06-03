@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{%  load bootstrap %}
+
+{% block title %} Login {% endblock %}
+
+{% block main %}
+
+    <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{form|bootstrap}}
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    <br><br>
+    <h3>Não é cadastrado ?</h3>
+    <a href="{% url 'register' %}" class="btn btn-primary">Cadastrar</a>
+    <a href="{% url 'home' %}" class="btn btn-secondary"> voltar </a>
+{% endblock %}

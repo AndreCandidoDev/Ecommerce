@@ -1,0 +1,27 @@
+========================= cliente/models ==============================================================
+
+from django.db import models
+from django.contrib.auth.models import User
+
+# Create your models here.
+
+# procurar o model padrao de usuario e atribuir como chave primaria a classe dados
+
+
+class Documentos(models.Model):
+    cpf = models.CharField(max_length=14)
+    rg = models.CharField(max_length=8)
+
+
+class Endereco(models.Model):
+    lougradouro = models.CharField(max_length=100)
+    numero = models.IntegerField()
+    cep = models.CharField(max_length=9)
+    complemento = models.CharField(max_length=100)
+    adicional = models.TextField(null=True, blank=True)
+
+
+class Dados(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    documentos = models.OneToOneField(Documentos, on_delete=models.CASCADE)
+    endereco = models.OneToOneField(Endereco, on_delete=models.CASCADE)

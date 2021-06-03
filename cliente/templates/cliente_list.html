@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h3>Lista de clientes cadastrados</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">CPF</th>
+          <th scope="col">RG</th>
+          <th scope="col">Usuário</th>
+        </tr>
+      </thead>
+        <tbody>
+            {% for cliente in clientes %}
+                <tr>
+                    <th>{{ cliente.id }}</th>
+                    <th>{{ cliente.cpf }}</th>
+                    <th>{{ cliente.rg }}</th>
+                    <th>{{ cliente.user }}</th>
+                    {% if cliente.id == 1 %}
+                    {% else %}
+                        <th>
+                            <a href="{% url 'detail' cliente.id %}">
+                                <i class="bi bi-search"></i>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="{% url 'delete' cliente.id %}">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </th>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

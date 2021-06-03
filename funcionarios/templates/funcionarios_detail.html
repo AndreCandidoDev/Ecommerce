@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h3>Nome completo: {{ object.nome_completo }}</h3>
+    <p>CPF: {{ object.cpf }}</p>
+    <p>RG: {{ object.rg }}</p>
+    <p>Telefone: {{ object.telefone }}</p>
+    <p>PIS/PASEP: {{ object.pis_pasep }}</p>
+    <p>Numero e serie CTPS: {{ object.numero_serie_ctps }}</p>
+    <p>Data de admissão: {{ object.data_admissao }}</p>
+    <p>Função: {{ object.funcao }}</p>
+    <p>Jornada de trabalho: {{ object.jornada_de_trabalho }}</p>
+    <p>Status: {{ object.status }}</p>
+    <p>Horas trabalhadas: {{ object.horas_trabalhadas }}</p>
+    <p>Horas extras: {{ object.horas_extras }}</p>
+    <p>Data de pagamento: {{ object.dia_pagamento }}</p>
+    <br>
+    <a href="{% url 'funcionarios_update' object.id %}">Atualizar dados</a>
+    <br>
+    <a href="{% url 'funcionarios_list' %}">Voltar</a>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h3>Lista de vendas</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Numero</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Valor</th>
+<!--                <th scope="col">Status</th>-->
+<!--                <th scope="col"></th>-->
+            </tr>
+        </thead>
+        <tbody>
+            {% for venda in object_list %}
+                <tr>
+                    <td>{{ venda.id }}</td>
+                    <td>{{ venda.numero }}</td>
+                    <td>{{ venda.cpf }}</td>
+                    <td>{{ venda.nome_completo }}</td>
+                    <td>{{ venda.telefone }}</td>
+                    <td>{{ venda.email }}</td>
+                    <td>{{ venda.produto.nome }}</td>
+                    <td>{{ venda.quantidade }}</td>
+                    <td>{{ venda.valor }}</td>
+<!--                    venda.status -->
+<!--                    <td></td>-->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

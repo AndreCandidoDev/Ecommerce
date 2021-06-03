@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Horario</th>
+                <th scope="col">Montagem</th>
+                <th scope="col">Frete(R$)</th>
+                <th scope="col">Endereço</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entrega in object_list %}
+                <tr>
+                    <td>{{ entrega.id }}</td>
+                    <td>{{ entrega.venda.nome_completo }}</td>
+                    <td>{{ entrega.horario }}</td>
+                    <td>{{ entrega.montagem }}</td>
+                    <td>{{ entrega.frete }}</td>
+                    <td>{{ entrega.endereco_completo }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'create_entregas' %}" class="badge badge-primary">Marcar entrega</a>
+{% endblock %}

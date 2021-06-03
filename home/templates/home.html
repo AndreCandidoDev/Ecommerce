@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% if user.is_superuser %}
+    <h3>Administrador logado</h3>
+    <div>
+        <a href="" class="btn btn-success">Estatísticas de venda</a>
+    </div>
+{% else %}
+    <h3>Seja bem vindo</h3>
+{% endif %}
+    <br><br>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+            {% if object_list %}
+                {% for produto in object_list %}
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                                {% if produto.photo1 and produto.photo2 and produto.photo3%}
+    <!--                        Todo: carrocel not working, need refact-->
+                                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                          <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <a href="{% url 'catalogo_detail' produto.id %}">
+                                                    <img style="max-width: 50%; height: auto;" class="card-body"
+                                                         src="{{ produto.photo1.url }}" alt="First slide">
+                                                </a>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <a href="{% url 'catalogo_detail' produto.id %}">
+                                                    <img style="max-width: 50%; height: auto;" class="card-body"
+                                                         src="{{ produto.photo2.url }}" alt="Second slide">
+                                                </a>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <a href="{% url 'catalogo_detail' produto.id %}">
+                                                    <img style="max-width: 50%; height: auto;" class="card-body"
+                                                         src="{{ produto.photo3.url }}" alt="Third slide">
+                                                </a>
+                                            </div>
+                                          </div>
+                                    </div>
+                                {% elif produto.photo1 %}
+                                    <a href="{% url 'catalogo_detail' produto.id %}">
+                                        <img style="max-width: 50%; height: auto;" class="card-body"
+                                                             src="{{ produto.photo1.url }}"/></a>
+                                {% else %}
+                                    <a href="{% url 'catalogo_detail' produto.id %}">Detalhes</a>
+                                {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ produto.nome }}</h5>
+                                <p class="card-text">R$: {{ produto.preco }}</p>
+                                {% if user.is_authenticated %}
+                                    {% if dev_mode %}
+                                        <a class="btn btn-primary" href="{% url 'compra_new' produto.id%}">
+                                            Solicitar compra
+                                            <i class="bi bi-gift-fill"></i>
+                                        </a>
+                                    {% else %}
+                                        <a class="btn btn-primary" href="{% url 'compra_new' produto.id%}">
+                                            Comprar
+                                            <i class="bi bi-gift-fill"></i>
+                                        </a>
+                                        <a class="btn btn-success" href="#">
+                                            Adicionar
+                                            <i class="bi bi-cart-plus-fill"></i>
+                                        </a><br><br>
+                                        <a class="btn btn-danger" href="#">
+                                            +wishlist
+                                            <i class="bi bi-heart-fill"></i>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                        <a href="" class="btn btn-danger">Faça o login para comprar</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h3>Não há produtos para exibir</h3>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

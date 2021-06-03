@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Cadastro de cliente {% endblock %}
+
+{% block main %}
+    <h1>Criação do usuário</h1>
+    <form  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a href="{% url 'login' %}" class="btn btn-secondary">voltar</a>
+    </form>
+{% endblock %}

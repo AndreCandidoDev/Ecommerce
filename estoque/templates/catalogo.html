@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+            {% for produto in object_list %}
+                <div class="col">
+<!--                    todo: fix bug to display image or find another solution-->
+                    <p><a href="{% url 'catalogo_detail' produto.id %}">{{ produto.nome }}</a></p>
+<!--                    <a href="">Imagem produto</a>-->
+<!--                    media/products_photos-->
+                    <img src="{{ produto.photo1 }}" />
+
+                    <p>R$: {{ produto.preco }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

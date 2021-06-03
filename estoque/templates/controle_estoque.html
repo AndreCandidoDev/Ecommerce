@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h3>Estoque da loja</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Area do móvel</th>
+          <th scope="col">Tipo de móvel</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Preço (R$)</th>
+          <th scope="col">Disponivel</th>
+          <th scope="col">Dimensões (m)</th>
+        </tr>
+      </thead>
+        <tbody>
+            {% for produto in object_list %}
+                <tr>
+                    <td>{{ produto.area_moveis }}</td>
+                    <td>{{ produto.tipo }}</td>
+                    <td>{{ produto.marca }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.preco }}</td>
+                    <td>{{ produto.disponiveis }}</td>
+                    <td>{{ produto.altura }}x{{produto.largura}}x{{produto.profundidade}}</td>
+                    <td><a href="{% url 'estoque_update' produto.id %}">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a></td>
+                    <td><a href="{% url 'estoque_delete' produto.id %}">
+                        <i class="bi bi-trash-fill"></i>
+                    </a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'estoque_create' %}" class="badge badge-primary">
+        Adicionar produto</a>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<!--todo: melhorar o visual (visual apenas para testes)-->
+    <div style="">
+        <h3>Dimensões</h3>
+        <h4>Altura: {{ object.altura }} metros</h4>
+        <h4>Largura: {{ object.largura }} metros</h4>
+        <h4>Profundidade: {{ object.profundidade }} metros</h4>
+        {% if dev_mode %}
+            <a class="btn btn-primary" href="{% url 'compra_new' object.id%}">
+                Solicitar compra
+                <i class="bi bi-gift-fill"></i>
+            </a>
+        {% else %}
+            <button class="btn btn-primary">Comprar <i class="bi bi-gift-fill"></i>
+                    <a href=""></a></button>
+            <button class="btn btn-success">Adicionar
+                <i class="bi bi-cart-plus-fill"></i>
+                <a href=""></a></button>
+        {% endif %}
+    </div>
+{% endblock %}

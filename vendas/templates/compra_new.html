@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+    {% if dev_mode %}
+        <h4>Informe os seguintes dados para que entremos em contato</h4>
+    {% else %}
+        <h4>Por favor informe a quantidade do produto que deseja comprar</h4>
+    {% endif %}
+    <form  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        {% if dev_mode %}
+            <button type="submit" class="btn btn-primary">Solicitar compra</button>
+        {% else %}
+            <button type="submit" class="btn btn-primary">Comprar</button>
+        {% endif %}
+    </form>
+{% endblock %}

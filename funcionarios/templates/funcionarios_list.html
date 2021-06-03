@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h3>Funcionarios da loja</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Função</th>
+          <th scope="col">Status</th>
+          <th scope="col">Horas trabalhadas</th>
+          <th scope="col">Horas extras</th>
+          <th scope="col">Dia de pagamento</th>
+          <th scope="col">Detalhes</th>
+          <th scope="col">Excluir</th>
+        </tr>
+      </thead>
+        <tbody>
+            {% for funcionario in object_list %}
+                <tr>
+                    <td>{{ funcionario.nome_completo }}</td>
+                    <td>{{ funcionario.funcao }}</td>
+                    <td>{{ funcionario.status }}</td>
+                    <td>{{ funcionario.horas_trabalhadas }}</td>
+                    <td>{{ funcionario.horas_extras }}</td>
+                    <td>{{ funcionario.dia_pagamento }}</td>
+                    <td><a href="{% url 'funcionarios_detail' funcionario.id %}">
+                        <i class="bi bi-eye-fill"></i></a></td>
+                    <td><a href="{% url 'funcionarios_delete' funcionario.id %}">
+                        <i class="bi bi-trash-fill"></i>
+                    </a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'funcionarios_create' %}" class="badge badge-primary">Adicionar funcionário</a>
+{% endblock %}
